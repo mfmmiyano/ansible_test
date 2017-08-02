@@ -14,7 +14,7 @@
       file: path=/etc/nginx/ssl state=directory
 
     - name: copy nginx config file
-      template: src=templates/nginx.conf.j2 dest={{ conf_file }}
+      template: src=tmp/nginx.conf.j2 dest={{ conf_file }}
       notify: restart nginx
 
     - name: enable configuration
@@ -22,7 +22,7 @@
       notify: restart nginx
 
     - name: copy index.html
-      template: src=templates/index.html.j2 dest=/usr/share/nginx/html/index.html mode=0644
+      template: src=tmp/index.html.j2 dest=/usr/share/nginx/html/index.html mode=0644
 
   handlers:
     - name: restart nginx
